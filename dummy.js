@@ -1,3 +1,5 @@
+//websocket 제작 server.js
+
 const WebSocket = require("ws")
 const ws = new WebSocket.Server({
     port: 9876
