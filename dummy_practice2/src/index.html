@@ -12,7 +12,13 @@
                 console.log(`sent`)
             }
             ws.onmessage = function(event){
-                console.log(event.data);
+                if (event.data == 100){
+                    ws.send(1)
+                    console.log(event.data);
+                    
+                
+                }
+                
             }   
             
         </script>

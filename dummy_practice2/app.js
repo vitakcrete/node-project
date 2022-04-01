@@ -6,7 +6,7 @@ const express = require("express")
 const app = express();
 const path = require("path");
 const { client } = require("websocket");
-
+const url = require("url")
 
 const server = require("http").createServer(app)
 const websocket = require("ws") 
@@ -22,25 +22,29 @@ server.listen(PORT,function(){
 })
 
 const wst = require("ws")
-
 const wss = new wst.Server({port:8001})
+var connects = []
 
-wss.on("connection", ws =>{
+wss.on("connection", function(ws,req) {
+    var location = url.parse(req.url, true);
+
     var initMessage = {message:"connection"};
     ws.send(JSON.stringify(initMessage));
+    connects.push(ws);
+    console.log("New Client Connected : " + connects.length);
 
     ws.on("message", data =>{
-
-        console.log(`Received from user: ${data}`)
-        broadcast(data);  // Return to client
-        ws.send(`Received ${data} confirmed at Server`)
         
+        console.log(`Received from user: ${data}`)
+        var msg = 100
+        ws.send(msg);
+        broadcast(msg);  // Return to client
     }) 
 })
 
+
 function broadcast (data) {
-    wss.clients.forEach(function (socket, i) {
-        socket.send(data);
+    connects.forEach(function (anything, i) {
+        anything.send(data);
     });
 }
-
