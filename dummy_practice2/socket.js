@@ -4,6 +4,7 @@ module.exports = (server) => {
     const wss = new Websocket.Server({server});
 
     wss.on("connection", (ws,req)=>{ //웹 소켓 연결시
+        
 
         wss.on("message",(data)=> { //클라이언트로부터 메세지 수신시
         
@@ -23,5 +24,11 @@ module.exports = (server) => {
             }
             
         },3000);
+
+
+
+
+
+
     });
 }
