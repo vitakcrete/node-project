@@ -1,34 +1,28 @@
 <!DOCTYPE html>
-<html lang ="ko">
-    <head>
-        <meta charset = "UTF-8">
-        <meta name="viewport" content="width = device - width, initial-scale=1.0">
-        <title>jun's node tryout</title>
-        <script>
-            const ws = new WebSocket("ws://localhost:8001")
-            function sayhi(){
-                
-                ws.send("hellow")//서버에 전송
-                console.log(`sent`)
-            }
-            ws.onmessage = function(event){
-                if (event.data == 100){
-                    
-                    console.log(event.data);
-                    
-                
-                }
-                
-            }   
-            
-        </script>
+<html lang="ko">
 
-    </head>
-    <body>
-        <h1>Hellow node js</h1>
-        <button onclick="sayhi()">클릭</button>
-        <script>
-            
-        </script>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width = device - width, initial-scale=1.0" />
+    <title>jun's node tryout</title>
+    <script>
+        const ws = new WebSocket("ws://localhost:8001");
+        function sayhi() {
+            ws.send("hellow"); //서버에 전송
+            console.log(`sent`);
+        }
+        ws.onmessage = function (event) {
+            if (event.data == 100) {
+                console.log(event.data);
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <h1>Hellow node js</h1>
+    <button onclick="sayhi()">클릭</button>
+    <script></script>
+</body>
+
 </html>
